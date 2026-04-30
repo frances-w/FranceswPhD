@@ -20,17 +20,32 @@ body{font-family:var(--font-sans);}
 <div class="wrap">
 
 <div style="margin-bottom:1.5rem;">
-  <div style="font-size:18px;font-weight:500;">Review bias across platforms</div>
-  <div style="font-size:12px;color:var(--color-text-secondary);">Wang · Cornell STR research · Review collection strategy impact</div>
+  <div style="font-size:18px;font-weight:500;">Review Characteristics Across Collection Methods</div>
 </div>
 
 <!-- KEY METRICS -->
-<div class="section-label">Key findings at a glance</div>
+<div class="section-label">Terminology — review collection methods</div>
 <div class="mg4">
-  <div class="mc"><div class="mc-label">Rating gap</div><div class="mc-val">+0.2 ⭐</div></div>
-  <div class="mc"><div class="mc-label">Highest ratings</div><div class="mc-val">Brand</div></div>
-  <div class="mc"><div class="mc-label">Lowest ratings</div><div class="mc-val">TA-SM</div></div>
-  <div class="mc"><div class="mc-label">Max review length</div><div class="mc-val">3× longer</div></div>
+  <div class="mc">
+    <div class="mc-label">Brand.com</div>
+    <div class="mc-val">Brand</div>
+    <div class="mc-sub">Post-stay prompted reviews collected directly by hotel</div>
+  </div>
+  <div class="mc">
+    <div class="mc-label">Online travel agency</div>
+    <div class="mc-val">OTA</div>
+    <div class="mc-sub">Expedia / Booking.com reviews from verified stays</div>
+  </div>
+  <div class="mc">
+    <div class="mc-label">TripAdvisor — requested</div>
+    <div class="mc-val">TA-RE</div>
+    <div class="mc-sub">Email-invited reviews (prompted after stay)</div>
+  </div>
+  <div class="mc">
+    <div class="mc-label">TripAdvisor — self-motivated</div>
+    <div class="mc-val">TA-SM</div>
+    <div class="mc-sub">Organic reviews written without prompting</div>
+  </div>
 </div>
 
 <hr class="divider">
@@ -38,7 +53,7 @@ body{font-family:var(--font-sans);}
 <!-- RESEARCH QUESTION -->
 <div class="section-label">Research question</div>
 <div class="finding-card">
-How does review collection method (prompted vs self-motivated) systematically bias ratings, sentiment, and review content?
+How does review collection method (prompted vs self-motivated) systematically affect ratings and review content?
 </div>
 
 <hr class="divider">
@@ -49,7 +64,7 @@ How does review collection method (prompted vs self-motivated) systematically bi
   <div class="card">
     <div class="card-title">Identification</div>
     <div class="finding-card">
-    Compare four review channels: Brand, OTA, TripAdvisor requested (TA-RE), and self-motivated (TA-SM)
+    Compare four review collection channels: Brand, OTA, TripAdvisor requested (TA-RE), and self-motivated (TA-SM)
     </div>
     <div class="finding-card">
     Control for hotel fixed effects and isolate variation driven by collection mechanism
@@ -69,10 +84,10 @@ How does review collection method (prompted vs self-motivated) systematically bi
 <div class="section-label">Model framework</div>
 <div class="card">
 <div class="finding-card">
-Ratingᵢⱼ = β₁ CollectionMethod + Hotel FE + ε
+Rating ~ Collection Method + Hotel Fixed Effect + ε
 </div>
 <div class="finding-card">
-Sentiment and length modeled as dependent variables across platforms
+Rating, Sentiment and Length modeled as dependent variables across platforms
 </div>
 </div>
 
