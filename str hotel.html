@@ -1,0 +1,369 @@
+
+<h2 class="sr-only">Research dashboard for the study on Airbnb's competitive impact on hotel performance using instrumental variable and difference-in-differences methods, showing methodology, market data, IV results, and strategic implications for operators and investors.</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-sans);}
+.wrap{padding:1rem 0;}
+.divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1.75rem 0;}
+.sl{font-size:11px;font-weight:500;letter-spacing:.06em;color:var(--color-text-secondary);text-transform:uppercase;margin-bottom:10px;}
+.sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:14px;}
+.mg4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem;}
+.mg3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem;}
+.mg2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:1.25rem;}
+.mc{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px;}
+.mc-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;}
+.mc-val{font-size:22px;font-weight:500;color:var(--color-text-primary);}
+.mc-sub{font-size:11px;margin-top:3px;color:var(--color-text-secondary);}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;}
+.card-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:12px;}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:99px;}
+.b-blue{background:#E6F1FB;color:#0C447C;}
+.b-green{background:#EAF3DE;color:#3B6D11;}
+.b-amber{background:#FAEEDA;color:#854F0B;}
+.b-red{background:#FCEBEB;color:#A32D2D;}
+.b-gray{background:var(--color-background-secondary);color:var(--color-text-secondary);}
+.b-purple{background:#EEEDFE;color:#3C3489;}
+.finding-card{border-left:3px solid #185FA5;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:10px 12px;margin-bottom:8px;background:var(--color-background-secondary);}
+.finding-card.g{border-left-color:#3B6D11;}
+.finding-card.a{border-left-color:#854F0B;}
+.finding-card.p{border-left-color:#534AB7;}
+.finding-card.r{border-left-color:#A32D2D;}
+.ftag{font-size:10px;font-weight:500;padding:1px 7px;border-radius:99px;display:inline-block;margin-bottom:5px;}
+.ftag-b{background:#E6F1FB;color:#0C447C;}
+.ftag-g{background:#EAF3DE;color:#3B6D11;}
+.ftag-a{background:#FAEEDA;color:#854F0B;}
+.ftag-p{background:#EEEDFE;color:#3C3489;}
+.ftag-r{background:#FCEBEB;color:#A32D2D;}
+.model-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px;}
+.model-row:last-child{border-bottom:none;}
+.model-label{min-width:80px;color:var(--color-text-secondary);font-size:11px;}
+.model-coef{font-weight:500;min-width:60px;font-size:12px;}
+.bbar-bg{flex:1;background:var(--color-background-secondary);border-radius:2px;height:6px;overflow:hidden;}
+.bbar-fill{height:6px;border-radius:2px;}
+.row-item{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px;}
+.row-item:last-child{border-bottom:none;}
+.check-row{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px;}
+.check-row:last-child{border-bottom:none;}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.stage-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;margin-bottom:8px;}
+.stage-num{font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:4px;}
+.stage-text{font-size:12px;color:var(--color-text-primary);line-height:1.5;}
+.stage-eq{font-size:11px;color:#185FA5;margin-top:4px;font-family:var(--font-mono);}
+.outcome-row{display:grid;grid-template-columns:80px 60px 60px 1fr 80px;gap:8px;align-items:center;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px;}
+.outcome-row:last-child{border-bottom:none;}
+.outcome-hdr{display:grid;grid-template-columns:80px 60px 60px 1fr 80px;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--color-border-secondary);font-size:11px;font-weight:500;color:var(--color-text-secondary);}
+</style>
+
+<div class="wrap">
+
+<div style="margin-bottom:1.5rem;">
+  <div style="font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px;">Airbnb vs. hotels — causal evidence on competitive impact</div>
+  <div style="font-size:12px;color:var(--color-text-secondary);">Cornell University · PhD Research · Instrumental variable + DiD framework · Data: AirDNA, STR/CoStar, Government regulatory records · Wang et al.</div>
+</div>
+
+<div class="sl">Research overview</div>
+<div class="mg4">
+  <div class="mc"><div class="mc-label">STR supply shock (1st stage)</div><div class="mc-val" style="color:#A32D2D;">-35–43%</div><div class="mc-sub">Policy-induced STR contraction</div></div>
+  <div class="mc"><div class="mc-label">Hotel demand elasticity</div><div class="mc-val" style="color:#854F0B;">-0.06%</div><div class="mc-sub">Per 1% increase in STR supply</div></div>
+  <div class="mc"><div class="mc-label">Hotel ADR / revenue effect</div><div class="mc-val" style="color:#3B6D11;">Insig.</div><div class="mc-sub">No significant displacement</div></div>
+  <div class="mc"><div class="mc-label">Strategic evasion rate</div><div class="mc-val" style="color:#3B6D11;">&lt;1%</div><div class="mc-sub">Hosts across all years</div></div>
+</div>
+
+<hr class="divider">
+
+<div class="mg2">
+  <div>
+    <div class="sl">Research question &amp; approach</div>
+    <div class="finding-card">
+      <div class="ftag ftag-b">Central question</div>
+      <div style="font-size:12px;color:var(--color-text-primary);line-height:1.5;">Does Airbnb supply expansion harm hotel performance — and if so, through which channels? When is Airbnb a real competitive threat vs. a coexistence partner?</div>
+    </div>
+    <div class="finding-card g">
+      <div class="ftag ftag-g">Natural experiment</div>
+      <div style="font-size:12px;color:var(--color-text-primary);line-height:1.5;">Charleston's 2018 ordinance banning entire-home STRs creates an exogenous policy shock — a clean instrument for STR supply variation not driven by market demand. Columbia and Greenville serve as unregulated control cities.</div>
+    </div>
+    <div class="finding-card p">
+      <div class="ftag ftag-p">Identification strategy</div>
+      <div style="font-size:12px;color:var(--color-text-primary);line-height:1.5;">Two-stage instrumental variable (2SLS) combined with two-way fixed effects (city + month-by-year). The policy shock instruments STR supply, eliminating endogeneity bias from demand shocks that jointly drive both Airbnb entry and hotel performance.</div>
+    </div>
+  </div>
+  <div>
+    <div class="sl">Data sources</div>
+    <div class="card">
+      <div class="row-item"><span style="font-weight:500;">STR platform data</span><span class="badge b-blue">AirDNA</span></div>
+      <div class="row-item"><span style="font-weight:500;">Hotel performance</span><span class="badge b-purple">STR / CoStar</span></div>
+      <div class="row-item"><span style="font-weight:500;">Regulatory records</span><span class="badge b-gray">Municipal &amp; state gov.</span></div>
+      <div class="row-item"><span style="font-weight:500;">Tourism demand proxy</span><span class="badge b-gray">Google Trends</span></div>
+      <div class="row-item"><span style="font-weight:500;">Panel period</span><span style="font-size:12px;color:var(--color-text-secondary);">Jan 2015 – Dec 2019</span></div>
+      <div class="row-item"><span style="font-weight:500;">Observation unit</span><span style="font-size:12px;color:var(--color-text-secondary);">Market × month</span></div>
+      <div class="row-item"><span style="font-weight:500;">Hotel coverage</span><span style="font-size:12px;color:var(--color-text-secondary);">82.5% of market (STR/CoStar)</span></div>
+      <div class="row-item" style="border-bottom:none;"><span style="font-weight:500;">Observations</span><span style="font-size:12px;color:var(--color-text-secondary);">180 market-months</span></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="sl">Accommodation market snapshot — Charleston pre-regulation (2015–2018)</div>
+<div class="mg4">
+  <div class="mc"><div class="mc-label">Hotel avg monthly demand</div><div class="mc-val">167,853</div><div class="mc-sub">room-nights · 4× STR volume</div></div>
+  <div class="mc"><div class="mc-label">STR avg monthly demand</div><div class="mc-val">41,404</div><div class="mc-sub">room-nights</div></div>
+  <div class="mc"><div class="mc-label">Hotel ADR vs. STR ADR</div><div class="mc-val">$181 / $178</div><div class="mc-sub">Near price parity</div></div>
+  <div class="mc"><div class="mc-label">Hotel occ. vs. STR occ.</div><div class="mc-val">75.3% / 40.5%</div><div class="mc-sub">Large utilization gap</div></div>
+</div>
+
+<div class="mg2">
+  <div class="card">
+    <div class="card-title">Market scale comparison — monthly averages</div>
+    <div style="display:flex;gap:14px;margin-bottom:10px;font-size:11px;color:var(--color-text-secondary);">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#185FA5;display:inline-block;"></span>Hotels</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#D85A30;display:inline-block;"></span>STR (Airbnb/Vrbo)</span>
+    </div>
+    <div style="position:relative;width:100%;height:200px;">
+      <canvas id="mktChart" role="img" aria-label="Grouped bar chart comparing hotels and STRs on four metrics: room supply, occupancy, ADR, and monthly revenue. Hotels dominate on revenue and occupancy; ADR is similar.">Hotels: 7329 rooms, 75.3% occ, $181 ADR, $31.4M revenue. STR: 3932 rooms, 40.5% occ, $178 ADR, $5.2M revenue.</canvas>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Compression nights — Charleston (2015–2019)</div>
+    <div style="display:flex;gap:14px;margin-bottom:10px;font-size:11px;color:var(--color-text-secondary);">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:6px;background:#B5D4F4;display:inline-block;border-radius:1px;"></span>85%+ occ</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:6px;background:#185FA5;display:inline-block;border-radius:1px;"></span>90%+ occ</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:6px;background:#0C447C;display:inline-block;border-radius:1px;"></span>95%+ occ</span>
+    </div>
+    <div style="position:relative;width:100%;height:200px;">
+      <canvas id="compChart" role="img" aria-label="Grouped bar chart showing compression nights per year. 85+ threshold averages 124 nights, 90+ averages 60, 95+ averages 11. Full compression rare and declining.">2015: 85+=120,90+=58,95+=14. 2016: 85+=135,90+=65,95+=18. 2017: 85+=128,90+=62,95+=12. 2018: 85+=122,90+=58,95+=10. 2019: 85+=116,90+=55,95+=1.</canvas>
+    </div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:8px;">Full compression (95%+) averaged only 11 nights/year — dropping to 1 in 2019. Hotels rarely at capacity, limiting Airbnb's ability to capture overflow demand.</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="sl">Empirical framework — two-stage IV model</div>
+<div class="mg2">
+  <div>
+    <div class="stage-box">
+      <div class="stage-num">First stage — policy as instrument for STR supply</div>
+      <div class="stage-text">The 2018 Charleston ordinance (Treat × After) instruments ln(STR Supply). Valid instrument requires: (1) relevance — policy significantly reduces STR supply; (2) exclusion — policy affects hotel performance only through STR supply, not through independent demand shocks.</div>
+      <div class="stage-eq">ln(STRSupply)zt = π(Treat × After) + αz + γt + ε</div>
+    </div>
+    <div class="stage-box">
+      <div class="stage-num">Second stage — effect of STR supply on hotel outcomes</div>
+      <div class="stage-text">Predicted STR supply from stage 1 is used to estimate causal effect on hotel OCC, ADR, RevPAR, Demand, and Revenue — isolating supply-driven variation from confounding demand shocks.</div>
+      <div class="stage-eq">Yzt = β·ln(STRSupply)̂zt + αz + γt + u</div>
+    </div>
+    <div class="stage-box">
+      <div class="stage-num">Exclusion restriction — validated via Google Trends</div>
+      <div class="stage-text">Tourism search interest (flights, hotels, activities, travel) remained parallel across Charleston and control cities before and after Aug 2018. No divergent demand shock at policy date confirms the ordinance is supply-side only.</div>
+    </div>
+  </div>
+  <div>
+    <div class="sl" style="margin-bottom:8px;">Why OLS alone is not sufficient</div>
+    <div class="finding-card r" style="margin-bottom:8px;">
+      <div class="ftag ftag-r">Endogeneity problem</div>
+      <div style="font-size:12px;color:var(--color-text-primary);line-height:1.5;">Airbnb supply grows in markets with strong tourism demand — the same demand that also boosts hotel performance. OLS conflates demand-driven hotel growth with Airbnb's competitive effect, biasing estimates toward zero or even positive.</div>
+    </div>
+    <div class="finding-card a">
+      <div class="ftag ftag-a">OLS vs. IV comparison — hotel demand</div>
+      <div style="font-size:12px;color:var(--color-text-primary);line-height:1.5;margin-bottom:8px;">OLS (preferred model): -0.040 — not significant. IV (preferred model): -0.058 — significant at 5%. The attenuation in OLS reflects endogeneity bias. IV recovers the true negative substitution effect by using only policy-driven supply variation.</div>
+    </div>
+    <div class="finding-card">
+      <div class="ftag ftag-b">Model progression — R² improvement</div>
+      <div style="font-size:12px;color:var(--color-text-primary);line-height:1.5;">Hotel demand R² rises from 0.002 (no FE) to 0.830 (city + year-month FE). The vast majority of variation explained by fixed effects — confirming that simpler models suffer severe specification error.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="sl">Key findings — IV preferred specification results</div>
+<div class="sub">First stage: policy shock reduces STR supply -43% (p&lt;0.05) · Second stage: effect of 1% STR supply increase on hotel outcomes</div>
+
+<div class="card" style="margin-bottom:1.25rem;">
+  <div class="outcome-hdr">
+    <span>Outcome</span><span>IV coef.</span><span>Sig.</span><span>Interpretation</span><span>Verdict</span>
+  </div>
+  <div class="outcome-row">
+    <span style="font-weight:500;">Hotel demand</span>
+    <span style="color:#A32D2D;font-weight:500;">-0.058</span>
+    <span><span class="badge b-red">p&lt;0.05</span></span>
+    <span style="color:var(--color-text-secondary);">1% more STR → 0.06% fewer hotel room-nights sold. Moderate substitution confirmed.</span>
+    <span><span class="badge b-amber">Threat</span></span>
+  </div>
+  <div class="outcome-row">
+    <span style="font-weight:500;">Hotel ADR</span>
+    <span style="color:var(--color-text-secondary);">+0.078</span>
+    <span><span class="badge b-gray">Insig.</span></span>
+    <span style="color:var(--color-text-secondary);">No significant pricing response. Hotels neither raise nor cut rates in response to STR supply.</span>
+    <span><span class="badge b-green">Safe</span></span>
+  </div>
+  <div class="outcome-row">
+    <span style="font-weight:500;">Hotel occupancy</span>
+    <span style="color:var(--color-text-secondary);">+2.714</span>
+    <span><span class="badge b-gray">Insig.</span></span>
+    <span style="color:var(--color-text-secondary);">No detectable impact on room utilization. Demand loss does not translate to occupancy decline.</span>
+    <span><span class="badge b-green">Safe</span></span>
+  </div>
+  <div class="outcome-row">
+    <span style="font-weight:500;">Hotel revenue</span>
+    <span style="color:var(--color-text-secondary);">+0.015</span>
+    <span><span class="badge b-gray">Insig.</span></span>
+    <span style="color:var(--color-text-secondary);">Demand loss offset by pricing adjustments. Net revenue impact statistically zero.</span>
+    <span><span class="badge b-green">Safe</span></span>
+  </div>
+</div>
+
+<div class="mg2">
+  <div class="card">
+    <div class="card-title">Model specification comparison — hotel demand (IV)</div>
+    <div style="display:flex;gap:14px;margin-bottom:10px;font-size:11px;color:var(--color-text-secondary);">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:6px;background:#A32D2D;border-radius:1px;display:inline-block;"></span>Negative (substitution)</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:6px;background:#185FA5;border-radius:1px;display:inline-block;"></span>Positive (bias)</span>
+    </div>
+    <div class="model-row">
+      <span class="model-label">No FE</span>
+      <span class="model-coef" style="color:#185FA5;">+0.009</span>
+      <div class="bbar-bg"><div class="bbar-fill" style="width:15%;background:#185FA5;"></div></div>
+      <span style="font-size:11px;color:var(--color-text-secondary);min-width:70px;">insig.</span>
+    </div>
+    <div class="model-row">
+      <span class="model-label">City FE</span>
+      <span class="model-coef" style="color:#185FA5;">+0.030***</span>
+      <div class="bbar-bg"><div class="bbar-fill" style="width:52%;background:#185FA5;"></div></div>
+      <span style="font-size:11px;color:var(--color-text-secondary);min-width:70px;">sig. — biased</span>
+    </div>
+    <div class="model-row">
+      <span class="model-label">Month FE</span>
+      <span class="model-coef" style="color:#185FA5;">+0.014</span>
+      <div class="bbar-bg"><div class="bbar-fill" style="width:24%;background:#185FA5;"></div></div>
+      <span style="font-size:11px;color:var(--color-text-secondary);min-width:70px;">insig.</span>
+    </div>
+    <div class="model-row">
+      <span class="model-label">City+Month FE</span>
+      <span class="model-coef" style="color:#185FA5;">+0.048*</span>
+      <div class="bbar-bg"><div class="bbar-fill" style="width:83%;background:#185FA5;"></div></div>
+      <span style="font-size:11px;color:var(--color-text-secondary);min-width:70px;">sig. — biased</span>
+    </div>
+    <div class="model-row" style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:7px 8px;border-bottom:none;">
+      <span class="model-label" style="font-weight:500;color:var(--color-text-primary);">Preferred (2-way)</span>
+      <span class="model-coef" style="color:#A32D2D;">-0.058**</span>
+      <div class="bbar-bg"><div class="bbar-fill" style="width:100%;background:#A32D2D;"></div></div>
+      <span style="font-size:11px;color:#A32D2D;font-weight:500;min-width:70px;">true effect</span>
+    </div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:8px;">Sign flips from positive to negative when proper time controls absorb demand shocks. Without year-month FE, endogeneity bias dominates.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Subgroup analysis — entire-home vs. shared/private listings</div>
+    <div style="position:relative;width:100%;height:200px;">
+      <canvas id="subgroupChart" role="img" aria-label="Bar chart comparing IV estimates for entire-home and shared room listings across four hotel outcomes. Demand effects are similar (-0.051 vs -0.045). ADR, occupancy, revenue are insignificant for both.">Entire-home: demand -0.051*, ADR +0.069 insig, occ insig, revenue insig. Shared/private: demand -0.045*, ADR +0.061 insig, occ insig, revenue insig.</canvas>
+    </div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:8px;">Competitive effects on hotel demand are nearly identical across listing types (-0.051 vs -0.045). Policy targeting by listing category produces no meaningfully different hotel outcome — at the aggregate market level.</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="sl">Robustness checks</div>
+<div class="mg2">
+  <div class="card">
+    <div class="card-title">Three robustness approaches — all confirm main findings</div>
+    <div class="check-row"><div class="dot" style="background:#3B6D11;"></div><div><span style="font-weight:500;">Performance index (normalized vs. control cities)</span> — OCC, ADR, RevPAR indices show no statistically significant change post-policy. t-statistics all below 1.3. Confirms no material shift in hotel equilibrium.</div></div>
+    <div class="check-row"><div class="dot" style="background:#3B6D11;"></div><div><span style="font-weight:500;">Level-form dependent variables (not log)</span> — OLS and IV models using raw OCC, ADR, Demand, Revenue values mirror log-form conclusions. Demand shows modest significant decline; pricing and revenue effects remain zero.</div></div>
+    <div class="check-row"><div class="dot" style="background:#3B6D11;"></div><div><span style="font-weight:500;">Alternative STR supply measures</span> — availability-adjusted property supply and availability-adjusted room supply produce results consistent with baseline. Conclusions not an artifact of supply metric definition.</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Performance index — pre vs. post regulation</div>
+    <div style="position:relative;width:100%;height:200px;">
+      <canvas id="indexChart" role="img" aria-label="Grouped bar chart comparing pre and post policy performance indices for OCC, ADR, and RevPAR. Pre: 1.106, 1.873, 2.079. Post: 1.096, 1.809, 1.995. Changes are small and statistically insignificant.">Pre-policy: OCC index 1.106, ADR index 1.873, RevPAR index 2.079. Post-policy: OCC 1.096, ADR 1.809, RevPAR 1.995. All changes insignificant (p > 0.20).</canvas>
+    </div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:6px;">All changes p&gt;0.20 — statistically indistinguishable from zero. Charleston's hotel performance tracked control cities through the regulatory shock.</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="sl">Strategic implications — for operators and investors</div>
+<div class="mg3">
+  <div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px;">
+    <div style="font-size:11px;font-weight:500;color:#0C447C;margin-bottom:6px;">When Airbnb IS a real threat</div>
+    <div class="check-row" style="border-bottom:none;padding:4px 0;"><div class="dot" style="background:#A32D2D;"></div><div style="font-size:12px;">Markets with frequent compression nights (&gt;90% occ) — Airbnb absorbs overflow demand that hotels could otherwise price up</div></div>
+    <div class="check-row" style="border-bottom:none;padding:4px 0;"><div class="dot" style="background:#A32D2D;"></div><div style="font-size:12px;">High Airbnb penetration (&gt;15% supply share) relative to hotel stock</div></div>
+    <div class="check-row" style="border-bottom:none;padding:4px 0;"><div class="dot" style="background:#A32D2D;"></div><div style="font-size:12px;">Economy and midscale segments — Airbnb's price point competes directly; luxury less exposed</div></div>
+  </div>
+  <div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px;">
+    <div style="font-size:11px;font-weight:500;color:#3B6D11;margin-bottom:6px;">When Airbnb is NOT a material threat</div>
+    <div class="check-row" style="border-bottom:none;padding:4px 0;"><div class="dot" style="background:#3B6D11;"></div><div style="font-size:12px;">Mid-sized tourism markets without frequent capacity constraints — like Charleston (avg 11 full-compression nights/yr)</div></div>
+    <div class="check-row" style="border-bottom:none;padding:4px 0;"><div class="dot" style="background:#3B6D11;"></div><div style="font-size:12px;">Hotels with strong brand loyalty, business travel mix, or service differentiation</div></div>
+    <div class="check-row" style="border-bottom:none;padding:4px 0;"><div class="dot" style="background:#3B6D11;"></div><div style="font-size:12px;">Markets where STR and hotels serve distinct traveler segments — partial substitution, not direct competition</div></div>
+  </div>
+  <div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px;">
+    <div style="font-size:11px;font-weight:500;color:#854F0B;margin-bottom:6px;">Limits of STR regulation for hotel benefit</div>
+    <div class="check-row" style="border-bottom:none;padding:4px 0;"><div class="dot" style="background:#854F0B;"></div><div style="font-size:12px;">A -43% Airbnb supply shock produced only a -0.06% hotel demand effect. Regulations help platforms less than hotel advocates expect</div></div>
+    <div class="check-row" style="border-bottom:none;padding:4px 0;"><div class="dot" style="background:#854F0B;"></div><div style="font-size:12px;">Zero effect on ADR and revenue — hotels cannot capture pricing upside from STR restrictions in low-compression markets</div></div>
+    <div class="check-row" style="border-bottom:none;padding:4px 0;"><div class="dot" style="background:#854F0B;"></div><div style="font-size:12px;">STR and hotels primarily coexist rather than compete — differentiated market structure persists post-regulation</div></div>
+  </div>
+</div>
+
+<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px;">
+  <button onclick="sendPrompt('How would I use this Airbnb vs hotel competition research as a past work example in my BWH Director BI interview?')" style="font-size:12px;padding:5px 12px;">Use in interview ↗</button>
+  <button onclick="sendPrompt('How do both of my Cornell STR research projects together strengthen my candidacy for the BWH Director BI role?')" style="font-size:12px;padding:5px 12px;">Combined research narrative ↗</button>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+const gc = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
+const tc = '#888780';
+
+new Chart(document.getElementById('mktChart'), {
+  type:'bar',
+  data:{
+    labels:['Room supply','Occupancy (%)','ADR ($)','Revenue ($M/mo)'],
+    datasets:[
+      {label:'Hotels',data:[7329,75.3,181,31.4],backgroundColor:'#185FA5',borderRadius:3},
+      {label:'STR',data:[3932,40.5,178,5.2],backgroundColor:'#D85A30',borderRadius:3}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.y.toLocaleString()}}},scales:{x:{ticks:{color:tc,font:{size:10}},grid:{display:false}},y:{ticks:{color:tc,font:{size:11}},grid:{color:gc}}}}
+});
+
+new Chart(document.getElementById('compChart'), {
+  type:'bar',
+  data:{
+    labels:['2015','2016','2017','2018','2019'],
+    datasets:[
+      {label:'85%+ occ',data:[120,135,128,122,116],backgroundColor:'#B5D4F4',borderRadius:2},
+      {label:'90%+ occ',data:[58,65,62,58,55],backgroundColor:'#185FA5',borderRadius:2},
+      {label:'95%+ occ',data:[14,18,12,10,1],backgroundColor:'#0C447C',borderRadius:2}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.y+' nights'}}},scales:{x:{ticks:{color:tc,font:{size:11}},grid:{display:false}},y:{ticks:{color:tc,font:{size:11},callback:v=>v+' nts'},grid:{color:gc}}}}
+});
+
+new Chart(document.getElementById('subgroupChart'), {
+  type:'bar',
+  data:{
+    labels:['Hotel demand','ADR','Occupancy','Revenue'],
+    datasets:[
+      {label:'Entire-home',data:[-0.051,0.069,2.396,0.013],backgroundColor:'#185FA5',borderRadius:3},
+      {label:'Shared/private',data:[-0.045,0.061,2.112,0.012],backgroundColor:'#D85A30',borderRadius:3}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.y.toFixed(3)}}},scales:{x:{ticks:{color:tc,font:{size:10}},grid:{display:false}},y:{ticks:{color:tc,font:{size:11}},grid:{color:gc}}}}
+});
+
+new Chart(document.getElementById('indexChart'), {
+  type:'bar',
+  data:{
+    labels:['OCC index','ADR index','RevPAR index'],
+    datasets:[
+      {label:'Pre-policy',data:[1.106,1.873,2.079],backgroundColor:'#B5D4F4',borderRadius:3},
+      {label:'Post-policy',data:[1.096,1.809,1.995],backgroundColor:'#185FA5',borderRadius:3}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.y.toFixed(3)}}},scales:{x:{ticks:{color:tc,font:{size:11}},grid:{display:false}},y:{min:0,ticks:{color:tc,font:{size:11}},grid:{color:gc}}}}
+});
+</script>

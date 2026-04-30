@@ -1,0 +1,345 @@
+
+<h2 class="sr-only">Interactive research dashboard for the paper Free vs. Paid Listings: How Hotels Can Optimize Google Hotel Finder, showing key findings, experimental data, booking simulator, and strategic decision framework.</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-sans);}
+.wrap{padding:1rem 0;}
+.divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1.75rem 0;}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.06em;color:var(--color-text-secondary);text-transform:uppercase;margin-bottom:10px;}
+.sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:14px;}
+.mg4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem;}
+.mg3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem;}
+.mg2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:1.25rem;}
+.mc{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px;}
+.mc-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;}
+.mc-val{font-size:22px;font-weight:500;color:var(--color-text-primary);}
+.mc-sub{font-size:11px;margin-top:3px;color:var(--color-text-secondary);}
+.mc-up{color:#3B6D11;}
+.mc-warn{color:#854F0B;}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;}
+.card-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:12px;}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:99px;}
+.b-blue{background:#E6F1FB;color:#0C447C;}
+.b-green{background:#EAF3DE;color:#3B6D11;}
+.b-amber{background:#FAEEDA;color:#854F0B;}
+.b-red{background:#FCEBEB;color:#A32D2D;}
+.b-gray{background:var(--color-background-secondary);color:var(--color-text-secondary);}
+.finding-card{border-left:3px solid #185FA5;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;background:var(--color-background-secondary);padding:10px 12px;margin-bottom:8px;}
+.finding-card.green{border-left-color:#3B6D11;}
+.finding-card.amber{border-left-color:#854F0B;}
+.finding-tag{font-size:10px;font-weight:500;padding:1px 7px;border-radius:99px;display:inline-block;margin-bottom:5px;}
+.tag-blue{background:#E6F1FB;color:#0C447C;}
+.tag-green{background:#EAF3DE;color:#3B6D11;}
+.tag-amber{background:#FAEEDA;color:#854F0B;}
+.finding-text{font-size:12px;color:var(--color-text-primary);line-height:1.5;}
+.state-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem;}
+.state-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px;text-align:center;}
+.state-label{font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em;}
+.state-val{font-size:20px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px;}
+.state-sub{font-size:11px;color:var(--color-text-secondary);}
+.slider-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.slider-label{font-size:12px;color:var(--color-text-secondary);min-width:120px;}
+.slider-out{font-size:12px;font-weight:500;color:var(--color-text-primary);min-width:44px;text-align:right;}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;}
+.result-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;text-align:center;}
+.result-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;}
+.result-val{font-size:16px;font-weight:500;}
+.decision-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px;}
+.decision-row:last-child{border-bottom:none;}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.dot-green{background:#3B6D11;}
+.dot-red{background:#A32D2D;}
+.dot-amber{background:#854F0B;}
+</style>
+
+<div class="wrap">
+
+<div style="margin-bottom:1.5rem;">
+  <div style="font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px;">Free vs. paid listings: Google Hotel Finder optimization</div>
+  <div style="font-size:12px;color:var(--color-text-secondary);">Wang, Larson &amp; Anderson · Cornell Center for Hospitality Research · CHR-2025-07 · 16-week switchback experiment · 26 boutique hotels</div>
+</div>
+
+<div class="section-label">Key findings at a glance</div>
+<div class="mg4">
+  <div class="mc"><div class="mc-label">Traffic lift (paid vs. organic)</div><div class="mc-val mc-up">+84%</div><div class="mc-sub">Total clicks from GHF</div></div>
+  <div class="mc"><div class="mc-label">Booking lift (paid vs. organic)</div><div class="mc-val mc-up">+41%</div><div class="mc-sub">Estimated total bookings</div></div>
+  <div class="mc"><div class="mc-label">Direct booking share (paid)</div><div class="mc-val mc-up">4 in 5</div><div class="mc-sub">Incremental bookings go direct</div></div>
+  <div class="mc"><div class="mc-label">GHF search revenue share</div><div class="mc-val" style="color:var(--color-text-primary);">65%+</div><div class="mc-sub">Of all hotel search bookings</div></div>
+</div>
+
+<hr class="divider">
+
+<div class="section-label">Experimental design — three treatment states</div>
+<div class="state-grid">
+  <div class="state-card">
+    <div class="state-label">OFF</div>
+    <div class="state-val">19.52</div>
+    <div class="state-sub">bookings / week</div>
+    <div style="margin-top:8px;"><span class="badge b-gray">No GHF listing</span></div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:6px;">42.4 nights booked</div>
+  </div>
+  <div class="state-card" style="border-color:#185FA5;">
+    <div class="state-label" style="color:#0C447C;">ON — free organic</div>
+    <div class="state-val">21.68</div>
+    <div class="state-sub">bookings / week</div>
+    <div style="margin-top:8px;"><span class="badge b-blue">Free direct link</span></div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:6px;">47.2 nights · CTR 3.77% · CVR 2.99%</div>
+  </div>
+  <div class="state-card" style="border-color:#3B6D11;border-width:2px;">
+    <div class="state-label" style="color:#3B6D11;">PAID — sponsored</div>
+    <div class="state-val" style="color:#3B6D11;">25.04</div>
+    <div class="state-sub">bookings / week</div>
+    <div style="margin-top:8px;"><span class="badge b-green">Free + paid links</span></div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:6px;">54.9 nights · Sponsored CTR 5.90%</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section-label">CTR &amp; CVR breakdown — organic vs. sponsored</div>
+<div class="mg2">
+  <div class="card">
+    <div class="card-title">Click-through rate by placement</div>
+    <div style="display:flex;gap:12px;margin-bottom:10px;font-size:11px;color:var(--color-text-secondary);">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#185FA5;display:inline-block;"></span>Organic CTR</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#3B6D11;display:inline-block;"></span>Sponsored CTR</span>
+    </div>
+    <div style="position:relative;width:100%;height:180px;">
+      <canvas id="ctrChart" role="img" aria-label="Grouped bar chart showing click-through rates. ON organic: 3.77%. PAID organic drops to 1.09% but sponsored adds 5.90%.">ON organic CTR 3.77%. PAID organic CTR 1.09%, PAID sponsored CTR 5.90%.</canvas>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Weekly bookings by treatment</div>
+    <div style="display:flex;gap:12px;margin-bottom:10px;font-size:11px;color:var(--color-text-secondary);">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#888780;display:inline-block;"></span>Bookings</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#185FA5;display:inline-block;"></span>Nights booked</span>
+    </div>
+    <div style="position:relative;width:100%;height:180px;">
+      <canvas id="bookChart" role="img" aria-label="Grouped bar chart showing bookings and nights by treatment. OFF: 19.52 bookings, 42.4 nights. ON: 21.68 bookings, 47.2 nights. PAID: 25.04 bookings, 54.9 nights.">OFF 19.52 bookings 42.4 nights. ON 21.68 bookings 47.2 nights. PAID 25.04 bookings 54.9 nights.</canvas>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section-label">Interactive simulator — when do paid ads pay off?</div>
+<div class="sub">Adjust hotel conditions to see estimated weekly booking impact and recommendation</div>
+
+<div class="mg2">
+  <div class="card">
+    <div class="card-title">Hotel conditions</div>
+    <div class="slider-row">
+      <span class="slider-label">Weekly impressions</span>
+      <input type="range" min="0" max="1000" value="300" step="10" id="impSlider" style="flex:1;">
+      <span class="slider-out" id="impOut">300</span>
+    </div>
+    <div class="slider-row">
+      <span class="slider-label">Future availability</span>
+      <input type="range" min="0" max="5" value="2" step="1" id="faSlider" style="flex:1;">
+      <span class="slider-out" id="faOut">2 rooms</span>
+    </div>
+    <div class="slider-row">
+      <span class="slider-label">CPC bid ($)</span>
+      <input type="range" min="1" max="10" value="3" step="1" id="cpcSlider" style="flex:1;">
+      <span class="slider-out" id="cpcOut">$3</span>
+    </div>
+    <div class="slider-row">
+      <span class="slider-label">Avg nightly rate ($)</span>
+      <input type="range" min="80" max="400" value="180" step="10" id="adrSlider" style="flex:1;">
+      <span class="slider-out" id="adrOut">$180</span>
+    </div>
+    <div style="margin-top:12px;padding:12px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);" id="recBox">
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;">Recommendation</div>
+      <div style="font-size:14px;font-weight:500;" id="recText">Calculating...</div>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:4px;" id="recReason"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Estimated weekly impact</div>
+    <div class="result-grid">
+      <div class="result-box">
+        <div class="result-label">Organic bookings</div>
+        <div class="result-val" id="r-organic" style="color:#185FA5;">21.7</div>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Paid bookings</div>
+        <div class="result-val" id="r-paid" style="color:#3B6D11;">25.0</div>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Incremental</div>
+        <div class="result-val" id="r-inc" style="color:#3B6D11;">+3.3</div>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Ad spend (est.)</div>
+        <div class="result-val" id="r-spend" style="color:#854F0B;">$0</div>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Revenue uplift</div>
+        <div class="result-val" id="r-rev" style="color:#3B6D11;">$0</div>
+      </div>
+      <div class="result-box">
+        <div class="result-label">Net ROI</div>
+        <div class="result-val" id="r-roi">0x</div>
+      </div>
+    </div>
+    <div style="position:relative;width:100%;height:140px;margin-top:14px;">
+      <canvas id="roiChart" role="img" aria-label="Bar chart comparing organic vs paid weekly revenue.">Organic vs paid revenue comparison.</canvas>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section-label">Strategic decision framework — when to activate paid</div>
+<div class="mg2">
+  <div class="card">
+    <div class="card-title">Activate paid placement when...</div>
+    <div class="decision-row"><div class="dot dot-green"></div><div><span style="font-weight:500;">Impressions are low (&lt;500/week)</span> — paid ads generate meaningful incremental reach that the free listing cannot capture alone.</div></div>
+    <div class="decision-row"><div class="dot dot-green"></div><div><span style="font-weight:500;">Future availability is high (2+ rooms)</span> — ample inventory means newly generated demand can actually be monetized.</div></div>
+    <div class="decision-row"><div class="dot dot-green"></div><div><span style="font-weight:500;">Weekday / off-peak periods</span> — weekday demand books direct at higher rates, improving net margin on paid clicks.</div></div>
+    <div class="decision-row"><div class="dot dot-green"></div><div><span style="font-weight:500;">Longer stays &amp; group bookings targeted</span> — these guest types book direct more often, maximizing ROI on paid exposure.</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Pause paid placement when...</div>
+    <div class="decision-row"><div class="dot dot-red"></div><div><span style="font-weight:500;">Impressions are already high (&gt;750/week)</span> — the hotel is already capturing most available demand; paid clicks add cost without revenue.</div></div>
+    <div class="decision-row"><div class="dot dot-red"></div><div><span style="font-weight:500;">Inventory is tight (&lt;1 room available)</span> — ads surface rooms that cannot be sold, generating wasted spend.</div></div>
+    <div class="decision-row"><div class="dot dot-red"></div><div><span style="font-weight:500;">Weekend / peak periods</span> — weekend stays skew OTA-prone, reducing direct booking share and net margin on paid traffic.</div></div>
+    <div class="decision-row"><div class="dot dot-amber"></div><div><span style="font-weight:500;">Always keep the free organic listing ON</span> — zero cost, positive visibility, strengthens direct channel regardless of paid strategy.</div></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:1.25rem;">
+  <div class="card-title">Key research findings</div>
+  <div class="finding-card">
+    <div class="finding-tag tag-blue">Billboard effect</div>
+    <div class="finding-text">Paid listings influence bookings beyond direct Google-attributed clicks. Searchers exposed to paid ads become more likely to book later through other channels — a platform-native awareness effect that traditional attribution misses.</div>
+  </div>
+  <div class="finding-card green">
+    <div class="finding-tag tag-green">Direct channel protection</div>
+    <div class="finding-text">Although paid ads slightly reduce the organic direct booking share, the absolute number of direct bookings still rises because total demand grows. For every incremental booking under PAID, roughly 4 out of 5 occur on the hotel's direct channel.</div>
+  </div>
+  <div class="finding-card amber">
+    <div class="finding-tag tag-amber">Future availability metric</div>
+    <div class="finding-text">GHF advertising triggers on shopping date, not stay date — meaning ads surface for all future dates even when inventory is minimal. The FA metric developed in this study controls for this to distinguish genuine incremental demand from noise.</div>
+  </div>
+</div>
+
+<div style="display:flex;justify-content:flex-end;gap:8px;">
+  <button onclick="sendPrompt('How would I use this Google Hotel Finder research as a past work example in my BWH Director BI interview?')" style="font-size:12px;padding:5px 12px;">Use in interview ↗</button>
+  <button onclick="sendPrompt('What questions might an interviewer ask me about this GHF research and how does it relate to the BWH BI Director role?')" style="font-size:12px;padding:5px 12px;">Likely interview questions ↗</button>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+const gridColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
+const tickColor = '#888780';
+
+new Chart(document.getElementById('ctrChart'), {
+  type: 'bar',
+  data: {
+    labels: ['ON — organic', 'PAID — organic', 'PAID — sponsored'],
+    datasets: [
+      {label:'CTR %',data:[3.77,1.09,5.90],backgroundColor:['#185FA5','#B5D4F4','#3B6D11'],borderRadius:3}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.y.toFixed(2)+'%'}}},scales:{x:{ticks:{color:tickColor,font:{size:10}},grid:{display:false}},y:{ticks:{color:tickColor,font:{size:11},callback:v=>v+'%'},grid:{color:gridColor},max:7}}}
+});
+
+new Chart(document.getElementById('bookChart'), {
+  type: 'bar',
+  data: {
+    labels: ['OFF','ON','PAID'],
+    datasets: [
+      {label:'Bookings',data:[19.52,21.68,25.04],backgroundColor:'#888780',borderRadius:3},
+      {label:'Nights',data:[42.40,47.20,54.88],backgroundColor:'#185FA5',borderRadius:3}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.parsed.y.toFixed(1)}}},scales:{x:{ticks:{color:tickColor,font:{size:11}},grid:{display:false}},y:{ticks:{color:tickColor,font:{size:11}},grid:{color:gridColor}}}}
+});
+
+let roiChartInst = null;
+
+function calcSim() {
+  const imp = parseInt(document.getElementById('impSlider').value);
+  const fa = parseInt(document.getElementById('faSlider').value);
+  const cpc = parseInt(document.getElementById('cpcSlider').value);
+  const adr = parseInt(document.getElementById('adrSlider').value);
+
+  document.getElementById('impOut').textContent = imp;
+  document.getElementById('faOut').textContent = fa + ' room' + (fa !== 1 ? 's' : '');
+  document.getElementById('cpcOut').textContent = '$' + cpc;
+  document.getElementById('adrOut').textContent = '$' + adr;
+
+  const organicBookings = 21.68;
+  const availFactor = Math.min(fa / 2, 1);
+  const impFactor = Math.max(0, 1 - (imp / 1000));
+  const paidMultiplier = 1 + (0.41 * availFactor * impFactor);
+  const paidBookings = Math.round(organicBookings * paidMultiplier * 10) / 10;
+  const incBookings = Math.round((paidBookings - organicBookings) * 10) / 10;
+  const estimatedClicks = Math.round(imp * 0.059);
+  const adSpend = Math.round(estimatedClicks * cpc);
+  const revUplift = Math.round(incBookings * adr * 0.8);
+  const roi = adSpend > 0 ? Math.round((revUplift / adSpend) * 10) / 10 : 0;
+
+  document.getElementById('r-organic').textContent = organicBookings.toFixed(1);
+  document.getElementById('r-paid').textContent = paidBookings.toFixed(1);
+  document.getElementById('r-inc').textContent = '+' + incBookings.toFixed(1);
+  document.getElementById('r-spend').textContent = '$' + adSpend;
+  document.getElementById('r-rev').textContent = '$' + revUplift;
+  document.getElementById('r-roi').textContent = roi.toFixed(1) + 'x';
+  document.getElementById('r-roi').style.color = roi >= 2 ? '#3B6D11' : roi >= 1 ? '#854F0B' : '#A32D2D';
+
+  const isPaidBetter = imp < 600 && fa >= 2 && roi > 1;
+  const recBox = document.getElementById('recBox');
+  const recText = document.getElementById('recText');
+  const recReason = document.getElementById('recReason');
+
+  if (isPaidBetter) {
+    recBox.style.borderColor = '#3B6D11';
+    recText.style.color = '#3B6D11';
+    recText.textContent = 'Activate paid placement';
+    recReason.textContent = 'Low impressions + available inventory = incremental demand can be monetized. ROI positive.';
+  } else if (imp >= 750) {
+    recBox.style.borderColor = '#A32D2D';
+    recText.style.color = '#A32D2D';
+    recText.textContent = 'Pause paid — high exposure already';
+    recReason.textContent = 'Hotel is already capturing most accessible demand. Paid clicks add cost without meaningful revenue lift.';
+  } else if (fa < 2) {
+    recBox.style.borderColor = '#A32D2D';
+    recText.style.color = '#A32D2D';
+    recText.textContent = 'Pause paid — inventory too tight';
+    recReason.textContent = 'Paid ads would surface rooms that cannot be sold. Wasted spend with no revenue upside.';
+  } else {
+    recBox.style.borderColor = '#854F0B';
+    recText.style.color = '#854F0B';
+    recText.textContent = 'Marginal — monitor closely';
+    recReason.textContent = 'Conditions are borderline. Watch ROI weekly and pause if spend exceeds revenue uplift.';
+  }
+
+  const organicRev = Math.round(organicBookings * adr * 0.8);
+  const paidRev = Math.round(paidBookings * adr * 0.8) - adSpend;
+
+  if (roiChartInst) roiChartInst.destroy();
+  roiChartInst = new Chart(document.getElementById('roiChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Organic revenue', 'Paid net revenue'],
+      datasets: [{
+        data: [organicRev, paidRev],
+        backgroundColor: [isPaidBetter ? '#B5D4F4' : '#B5D4F4', isPaidBetter ? '#3B6D11' : '#A32D2D'],
+        borderRadius: 3
+      }]
+    },
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'$'+ctx.parsed.y.toLocaleString()}}},scales:{x:{ticks:{color:tickColor,font:{size:11}},grid:{display:false}},y:{ticks:{color:tickColor,font:{size:11},callback:v=>'$'+v.toLocaleString()},grid:{color:gridColor}}}}
+  });
+}
+
+['impSlider','faSlider','cpcSlider','adrSlider'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calcSim);
+});
+calcSim();
+</script>

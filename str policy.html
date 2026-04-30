@@ -1,0 +1,288 @@
+
+<h2 class="sr-only">Research dashboard summarizing a causal study of Charleston's 2018 short-term rental ordinance, including methodology, data, key findings on supply contraction, entry and exit dynamics, and robustness checks.</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-sans);}
+.wrap{padding:1rem 0;}
+.divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1.75rem 0;}
+.sl{font-size:11px;font-weight:500;letter-spacing:.06em;color:var(--color-text-secondary);text-transform:uppercase;margin-bottom:10px;}
+.sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:14px;}
+.mg4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem;}
+.mg3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem;}
+.mg2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:1.25rem;}
+.mc{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px;}
+.mc-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;}
+.mc-val{font-size:22px;font-weight:500;color:var(--color-text-primary);}
+.mc-sub{font-size:11px;margin-top:3px;color:var(--color-text-secondary);}
+.red{color:#A32D2D;} .green{color:#3B6D11;} .amber{color:#854F0B;} .blue{color:#0C447C;}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;}
+.card-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:12px;}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:99px;}
+.b-blue{background:#E6F1FB;color:#0C447C;}
+.b-green{background:#EAF3DE;color:#3B6D11;}
+.b-amber{background:#FAEEDA;color:#854F0B;}
+.b-red{background:#FCEBEB;color:#A32D2D;}
+.b-gray{background:var(--color-background-secondary);color:var(--color-text-secondary);}
+.b-purple{background:#EEEDFE;color:#3C3489;}
+.timeline-row{display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px;}
+.timeline-row:last-child{border-bottom:none;}
+.tl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.tl-date{font-size:11px;color:var(--color-text-secondary);min-width:70px;flex-shrink:0;}
+.finding-card{border-left:3px solid #185FA5;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:10px 12px;margin-bottom:8px;background:var(--color-background-secondary);}
+.finding-card.g{border-left-color:#3B6D11;}
+.finding-card.a{border-left-color:#854F0B;}
+.finding-card.p{border-left-color:#534AB7;}
+.ftag{font-size:10px;font-weight:500;padding:1px 7px;border-radius:99px;display:inline-block;margin-bottom:5px;}
+.ftag-b{background:#E6F1FB;color:#0C447C;}
+.ftag-g{background:#EAF3DE;color:#3B6D11;}
+.ftag-a{background:#FAEEDA;color:#854F0B;}
+.ftag-p{background:#EEEDFE;color:#3C3489;}
+.ftext{font-size:12px;color:var(--color-text-primary);line-height:1.5;}
+.model-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px;}
+.model-row:last-child{border-bottom:none;}
+.model-label{min-width:70px;color:var(--color-text-secondary);}
+.model-coef{font-weight:500;min-width:56px;}
+.model-bar-bg{flex:1;background:var(--color-background-secondary);border-radius:2px;height:6px;overflow:hidden;}
+.model-bar-fill{height:6px;border-radius:2px;}
+.check-row{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px;}
+.check-row:last-child{border-bottom:none;}
+.check-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.implication-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px 12px;font-size:12px;line-height:1.5;color:var(--color-text-primary);}
+.impl-label{font-size:10px;font-weight:500;color:var(--color-text-secondary);margin-bottom:4px;}
+</style>
+
+<div class="wrap">
+
+<div style="margin-bottom:1.5rem;">
+  <div style="font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px;">STR market regulation — causal evidence from Charleston, SC</div>
+  <div style="font-size:12px;color:var(--color-text-secondary);">Cornell University · PhD Research Project · Presented at 2025 USC Workshop on Short-Term Rental Economic Impact · Wang, Anderson et al.</div>
+</div>
+
+<div class="sl">Research overview — key numbers</div>
+<div class="mg4">
+  <div class="mc"><div class="mc-label">Total supply contraction</div><div class="mc-val red">-44%</div><div class="mc-sub">Post-ordinance (preferred model)</div></div>
+  <div class="mc"><div class="mc-label">Study period</div><div class="mc-val">11 yrs</div><div class="mc-sub">2013–2024 panel data</div></div>
+  <div class="mc"><div class="mc-label">Charleston STRs (2017)</div><div class="mc-val">4,152</div><div class="mc-sub">6.7% of all housing units</div></div>
+  <div class="mc"><div class="mc-label">Strategic evasion rate</div><div class="mc-val green">&lt;1%</div><div class="mc-sub">Hosts in any given year</div></div>
+</div>
+
+<hr class="divider">
+
+<div class="mg2">
+  <div>
+    <div class="sl">Policy timeline — Charleston ordinance</div>
+    <div class="timeline-row"><div class="tl-date">Mar 2012</div><div class="tl-dot" style="background:#888780;"></div><div><span style="font-weight:500;">Total STR ban enacted</span> — rentals under 30 days prohibited citywide except STR overlay zone</div></div>
+    <div class="timeline-row"><div class="tl-date">Mar 2016</div><div class="tl-dot" style="background:#854F0B;"></div><div><span style="font-weight:500;">16-member taskforce created</span> — city council approves STR reform process</div></div>
+    <div class="timeline-row"><div class="tl-date">Apr 2018</div><div class="tl-dot" style="background:#185FA5;"></div><div><span style="font-weight:500;">Ordinance 2018-043 adopted</span> — replaces ban with regulated framework; primary residence only, no entire-home rentals</div></div>
+    <div class="timeline-row"><div class="tl-date">Jul 2018</div><div class="tl-dot" style="background:#3B6D11;"></div><div><span style="font-weight:500;">Permit applications open</span> — licensing system goes live</div></div>
+    <div class="timeline-row"><div class="tl-date">Aug 2018</div><div class="tl-dot" style="background:#A32D2D;"></div><div><span style="font-weight:500;">Enforcement begins</span> — treatment shock (t=0) for our DiD analysis</div></div>
+    <div class="timeline-row"><div class="tl-date">Apr 2023</div><div class="tl-dot" style="background:#534AB7;"></div><div><span style="font-weight:500;">End of study window</span> — 5 years post-enforcement observed</div></div>
+  </div>
+
+  <div>
+    <div class="sl">Research design &amp; data</div>
+    <div class="card" style="margin-bottom:10px;">
+      <div class="card-title">Causal identification strategy</div>
+      <div class="finding-card">
+        <div class="ftag ftag-b">Difference-in-differences (DiD)</div>
+        <div class="ftext">Compares Charleston (treated) vs. Columbia &amp; Greenville (control) before and after Aug 2018 enforcement. Two-way fixed effects: postal code + month-by-year. Clustered SEs at postal code level (N=30 clusters).</div>
+      </div>
+      <div class="finding-card g">
+        <div class="ftag ftag-g">Event study design</div>
+        <div class="ftext">Dynamic coefficients from 12 months pre-policy to 56 months post-policy. Validates parallel trends assumption — pre-period coefficients statistically indistinguishable from zero.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Data sources</div>
+      <div style="font-size:12px;color:var(--color-text-primary);line-height:1.7;">
+        <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:0.5px solid var(--color-border-tertiary);"><span>Platform listing data</span><span style="color:var(--color-text-secondary);">Airbnb &amp; Vrbo via AirDNA</span></div>
+        <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:0.5px solid var(--color-border-tertiary);"><span>Unit of observation</span><span style="color:var(--color-text-secondary);">Postal code × month</span></div>
+        <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:0.5px solid var(--color-border-tertiary);"><span>Sample period</span><span style="color:var(--color-text-secondary);">Aug 2017 – Apr 2023</span></div>
+        <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:0.5px solid var(--color-border-tertiary);"><span>Observations</span><span style="color:var(--color-text-secondary);">1,821 (supply) · 2,070 (entry/exit)</span></div>
+        <div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Control cities</span><span style="color:var(--color-text-secondary);">Columbia, Greenville SC (no regulation)</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="sl">Key finding 1 — model specification progression (dependent variable: ln supply)</div>
+<div class="sub">Coefficient on Treat × After across 5 model specifications · preferred model = Model 5</div>
+
+<div class="card" style="margin-bottom:1.25rem;">
+  <div style="display:flex;gap:16px;margin-bottom:12px;font-size:11px;color:var(--color-text-secondary);">
+    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:6px;border-radius:1px;background:#A32D2D;display:inline-block;"></span>Negative (reduction)</span>
+    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:6px;border-radius:1px;background:#185FA5;display:inline-block;"></span>Positive (misleading — omitted variable bias)</span>
+  </div>
+  <div class="model-row">
+    <span class="model-label">Model 1 (no FE)</span>
+    <span class="model-coef" style="color:#A32D2D;">+1.149***</span>
+    <div class="model-bar-bg"><div class="model-bar-fill" style="width:100%;background:#185FA5;"></div></div>
+    <span style="font-size:11px;color:var(--color-text-secondary);min-width:120px;">Omitted variable bias</span>
+  </div>
+  <div class="model-row">
+    <span class="model-label">Model 2 (zip FE)</span>
+    <span class="model-coef" style="color:#3B6D11;">-0.259***</span>
+    <div class="model-bar-bg"><div class="model-bar-fill" style="width:23%;background:#A32D2D;"></div></div>
+    <span style="font-size:11px;color:var(--color-text-secondary);min-width:120px;">-23% supply</span>
+  </div>
+  <div class="model-row">
+    <span class="model-label">Model 3 (month FE)</span>
+    <span class="model-coef" style="color:#A32D2D;">+1.149***</span>
+    <div class="model-bar-bg"><div class="model-bar-fill" style="width:100%;background:#185FA5;"></div></div>
+    <span style="font-size:11px;color:var(--color-text-secondary);min-width:120px;">No spatial control</span>
+  </div>
+  <div class="model-row">
+    <span class="model-label">Model 4 (zip + month)</span>
+    <span class="model-coef" style="color:#3B6D11;">-0.258***</span>
+    <div class="model-bar-bg"><div class="model-bar-fill" style="width:23%;background:#A32D2D;"></div></div>
+    <span style="font-size:11px;color:var(--color-text-secondary);min-width:120px;">-23% supply</span>
+  </div>
+  <div class="model-row" style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:7px 8px;border-bottom:none;">
+    <span class="model-label" style="font-weight:500;color:var(--color-text-primary);">Model 5 (preferred)</span>
+    <span class="model-coef" style="color:#A32D2D;">-0.585***</span>
+    <div class="model-bar-bg"><div class="model-bar-fill" style="width:44%;background:#A32D2D;"></div></div>
+    <span style="font-size:11px;color:#A32D2D;font-weight:500;min-width:120px;">-44% supply · R²=0.984</span>
+  </div>
+  <div style="font-size:11px;color:var(--color-text-secondary);margin-top:10px;">Model 5 uses zip + month-by-year FE, absorbing period-specific shocks (Hurricane Florence, solar eclipse surge, COVID). Sign reversal between Models 1 and 2 illustrates omitted variable bias from failing to control for spatial heterogeneity.</div>
+</div>
+
+<hr class="divider">
+
+<div class="sl">Key finding 2 — entry vs. exit dynamics</div>
+<div class="sub">DiD estimates split by immediate (months 1–6) and long-run (months 7+) post-policy periods</div>
+
+<div class="mg2">
+  <div class="card">
+    <div class="card-title">New entry — persistent deterrence</div>
+    <div style="position:relative;width:100%;height:200px;">
+      <canvas id="entryChart" role="img" aria-label="Bar chart showing entry decline. Months 1-6: -6.46 per month. Months 7+: -6.65 per month. Both significant, similar in magnitude.">Entry months 1-6: -6.46. Entry months 7+: -6.65.</canvas>
+    </div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:8px;">Effect is immediate and persistent — compliance costs and eligibility requirements durably deter new host participation.</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Exit — temporary spike, then stabilization</div>
+    <div style="position:relative;width:100%;height:200px;">
+      <canvas id="exitChart" role="img" aria-label="Bar chart showing exit spike then reversal. Months 1-6: +3.5 per month. Months 7+: -2.4 per month. Exit spike dissipates as market reaches new equilibrium.">Exit months 1-6: +3.5. Exit months 7+: -2.4.</canvas>
+    </div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:8px;">Initial spike reflects non-compliant exits. Reversal implies surviving listings are more resilient — policy filtered out marginal hosts.</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:1.25rem;">
+  <div class="card-title">Supply contraction mechanism — what drove the -44%?</div>
+  <div style="position:relative;width:100%;height:160px;">
+    <canvas id="mechChart" role="img" aria-label="Stacked bar showing mechanism decomposition. Entry deterrence accounts for roughly 75% of supply contraction, exit acceleration accounts for roughly 25%.">Entry deterrence: primary driver (sustained). Exit spike: secondary driver (transitory).</canvas>
+  </div>
+  <div style="font-size:11px;color:var(--color-text-secondary);margin-top:8px;">Dominant mechanism = sustained entry deterrence. Exit spike was real but transitory. Market did not collapse — it contracted and restabilized around compliant incumbents.</div>
+</div>
+
+<hr class="divider">
+
+<div class="sl">Key finding 3 — robustness checks</div>
+<div class="mg2">
+  <div class="card">
+    <div class="card-title">Strategic evasion — all three channels tested</div>
+    <div class="check-row"><div class="check-dot" style="background:#3B6D11;"></div><div><span style="font-weight:500;">Colisting (same unit, multiple profiles)</span> — fewer than 50 properties detected system-wide. Not a material confounder.</div></div>
+    <div class="check-row"><div class="check-dot" style="background:#3B6D11;"></div><div><span style="font-weight:500;">Within-listing category switching</span> — listing types stable across all Property IDs throughout study period. No observed transitions.</div></div>
+    <div class="check-row"><div class="check-dot" style="background:#3B6D11;"></div><div><span style="font-weight:500;">Strategic relisting (delist + relist new category)</span> — 0–0.6% of hosts per year; peaked at 0.613% in 2020. Below 1% in every year.</div></div>
+    <div style="margin-top:10px;padding:8px 10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);font-size:11px;color:var(--color-text-secondary);">Low evasion rates confirm findings reflect genuine behavioral adjustment, not data artifacts or regulatory arbitrage.</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Pre-pandemic sample robustness</div>
+    <div style="font-size:12px;color:var(--color-text-primary);line-height:1.7;margin-bottom:10px;">
+      <div style="padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);">Full sample: Aug 2017 – Apr 2023 (68 months)</div>
+      <div style="padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);">Pre-COVID sample: Aug 2017 – Feb 2020 (30 months)</div>
+      <div style="padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);">Pre-COVID post-treatment window: 18 months</div>
+      <div style="padding:5px 0;">Result: negative effect persists (smaller magnitude) — confirms regulation drives the reduction, not pandemic</div>
+    </div>
+    <div style="padding:8px 10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);font-size:11px;color:var(--color-text-secondary);">COVID represents a common shock — parallel trends preserved. Pre-pandemic robustness confirms causal interpretation is not COVID-contaminated.</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="sl">Policy &amp; strategic implications</div>
+<div class="mg2">
+  <div>
+    <div class="implication-card" style="margin-bottom:8px;border-left:3px solid #185FA5;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;">
+      <div class="impl-label">For policymakers</div>
+      Categorical restrictions reduce supply meaningfully but create spillover effects that deter even compliant operators. Enforcement credibility depends more on monitoring capacity and platform data-sharing than statutory strictness alone.
+    </div>
+    <div class="implication-card" style="margin-bottom:8px;border-left:3px solid #3B6D11;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;">
+      <div class="impl-label">For platform operators</div>
+      Entry deterrence — not forced exit — is the dominant supply-reduction mechanism. Platforms should anticipate structural contraction in regulated markets driven by reduced new supply, not mass incumbent departure.
+    </div>
+    <div class="implication-card" style="border-left:3px solid #854F0B;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;">
+      <div class="impl-label">Methodological lesson</div>
+      Model specification fundamentally determines causal validity. Without postal code FE, the naive estimate is +115% (sign-reversed). The preferred DiD estimate with granular time controls is -44% — a 159-point swing from misspecification.
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <div class="card-title">City comparisons — 2017 baseline</div>
+      <div style="position:relative;width:100%;height:220px;">
+        <canvas id="cityChart" role="img" aria-label="Grouped bar chart comparing Charleston, Columbia, and Greenville on ADR, occupancy rate, and active STR count in 2017.">Charleston ADR $263, occupancy 57.2%, STRs 4152. Columbia ADR $145, occupancy 56.6%, STRs 973. Greenville ADR $133, occupancy 59.2%, STRs 962.</canvas>
+      </div>
+      <div style="font-size:10px;color:var(--color-text-secondary);margin-top:6px;">Occupancy rates similar across cities — validating control group comparability for DiD identification.</div>
+    </div>
+  </div>
+</div>
+
+<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px;">
+  <button onclick="sendPrompt('How would I use this STR regulation research as a past work example in my BWH Director BI interview? What interview questions would it answer?')" style="font-size:12px;padding:5px 12px;">Use in interview ↗</button>
+  <button onclick="sendPrompt('How does this STR causal research connect to the test vs control and scenario modeling responsibilities in the BWH Director BI role?')" style="font-size:12px;padding:5px 12px;">Connect to BWH role ↗</button>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+const gc = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
+const tc = '#888780';
+
+new Chart(document.getElementById('entryChart'), {
+  type:'bar',
+  data:{
+    labels:['Months 1–6','Months 7+'],
+    datasets:[{label:'Entry change per month',data:[-6.46,-6.65],backgroundColor:['#A32D2D','#791F1F'],borderRadius:3}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y.toFixed(2)+' listings/mo'}}},scales:{x:{ticks:{color:tc,font:{size:11}},grid:{display:false}},y:{ticks:{color:tc,font:{size:11}},grid:{color:gc},min:-9,max:0}}}
+});
+
+new Chart(document.getElementById('exitChart'), {
+  type:'bar',
+  data:{
+    labels:['Months 1–6','Months 7+'],
+    datasets:[{label:'Exit change per month',data:[3.50,-2.40],backgroundColor:['#A32D2D','#3B6D11'],borderRadius:3}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y.toFixed(2)+' listings/mo'}}},scales:{x:{ticks:{color:tc,font:{size:11}},grid:{display:false}},y:{ticks:{color:tc,font:{size:11}},grid:{color:gc},min:-4,max:5}}}
+});
+
+new Chart(document.getElementById('mechChart'), {
+  type:'bar',
+  data:{
+    labels:['Supply contraction mechanism'],
+    datasets:[
+      {label:'Entry deterrence (sustained)',data:[75],backgroundColor:'#A32D2D',borderRadius:3},
+      {label:'Exit acceleration (transitory)',data:[25],backgroundColor:'#F09595',borderRadius:3}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': ~'+c.parsed.x+'%'}}},scales:{x:{stacked:true,max:100,ticks:{color:tc,font:{size:11},callback:v=>v+'%'},grid:{color:gc}},y:{stacked:true,ticks:{color:tc,font:{size:11}},grid:{display:false}}}}
+});
+
+new Chart(document.getElementById('cityChart'), {
+  type:'bar',
+  data:{
+    labels:['Charleston','Columbia','Greenville'],
+    datasets:[
+      {label:'ADR ($)',data:[263,145,133],backgroundColor:'#185FA5',borderRadius:3},
+      {label:'Occupancy (%)',data:[57.2,56.6,59.2],backgroundColor:'#1D9E75',borderRadius:3},
+      {label:'Active STRs (÷10)',data:[415,97,96],backgroundColor:'#888780',borderRadius:3}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>{if(c.datasetIndex===2)return 'Active STRs: '+(c.parsed.y*10);return c.dataset.label+': '+c.parsed.y.toFixed(1);}}}},scales:{x:{ticks:{color:tc,font:{size:11}},grid:{display:false}},y:{ticks:{color:tc,font:{size:11}},grid:{color:gc}}}}
+});
+</script>
