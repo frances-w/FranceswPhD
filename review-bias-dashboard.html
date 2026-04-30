@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review Bias Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f8f9fb;
+    }
+    h1 {
+      text-align: center;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .card h3 {
+      margin-top: 0;
+    }
+    .metric {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2a6df4;
+    }
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      background: #eef2ff;
+      border-radius: 8px;
+      margin: 5px 5px 0 0;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Review Bias Dashboard</h1>
+
+<div class="container">
+
+  <div class="card">
+    <h3>Key Insight</h3>
+    <p>Review collection method significantly impacts ratings.</p>
+    <p class="metric">+0.2 ⭐</p>
+    <p>Brand / TA-RE vs Self-Motivated</p>
+  </div>
+
+  <div class="card">
+    <h3>Collection Methods</h3>
+    <div class="tag">Brand</div>
+    <div class="tag">OTA (Expedia)</div>
+    <div class="tag">TA-RE</div>
+    <div class="tag">TA-SM</div>
+  </div>
+
+  <div class="card">
+    <h3>Average Ratings</h3>
+    <p>Brand: <strong>4.28</strong></p>
+    <p>OTA: <strong>4.01</strong></p>
+    <p>TA-RE: <strong>4.09</strong></p>
+    <p>TA-SM: <strong>3.86</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>Review Length</h3>
+    <p>Shortest: Brand (~34 words)</p>
+    <p>Longest: TA-SM (~112 words)</p>
+  </div>
+
+  <div class="card">
+    <h3>Bias Pattern</h3>
+    <p>Most Positive: TA-RE</p>
+    <p>Most Critical: TA-SM</p>
+    <p>Strong polarity across all methods</p>
+  </div>
+
+  <div class="card">
+    <h3>Business Implication</h3>
+    <p>Collection strategy can shift ratings enough to impact revenue and demand.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
