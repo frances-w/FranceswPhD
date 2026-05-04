@@ -178,7 +178,7 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://francesxwang.substac
   .then(data => {
     const container = document.getElementById("substack-feed");
 
-    container.innerHTML = data.items.slice(0,3).map(post => `
+    container.innerHTML = data.items.slice(0,10).map(post => `
       <div class="post">
         <a href="${post.link}" target="_blank">${post.title}</a>
         <div class="post-date">
