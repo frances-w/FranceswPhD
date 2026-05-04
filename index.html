@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Research Dashboard Portfolio</title>
+  <title>Frances Wang Portfolio</title>
 
   <style>
     body {
@@ -35,6 +35,13 @@
       gap: 24px;
     }
 
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
     .card {
       background: white;
       padding: 24px;
@@ -43,6 +50,44 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
+
+    .small-card {
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .small-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    }
+
+    .small-card .title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .small-card .desc {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .small-card .tag {
+      font-size: 10px;
+      padding: 3px 8px;
+    }
+
+    .small-card .meta {
+      font-size: 10px;
+      color: #777;
+      margin-top: 4px;
+    }
+    
 
     .card:hover {
       transform: translateY(-6px);
@@ -109,14 +154,38 @@
 
 <div class="container">
 
+  <div class="header" style="display:flex; align-items:center; gap:24px;">
+
+    <!-- Profile Image -->
+    <img src="profile.png" alt="Frances Wang" style="
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      object-fit:cover;
+      border:1px solid #e5e7eb;
+    ">
+
+    <!-- Text Content -->
+    <div>
+      <h1 style="margin-bottom:6px;">Frances Wang</h1>
+
+      <div style="font-size:13px; color:#666; margin-bottom:10px;">
+        XW568@CORNELL.EDU
+      </div>
+    </div>
+
+  </div>  
+
   <div class="header">
     <h1>Research Dashboards</h1>
     <div class="subtitle">
-      Causal inference · Marketplace dynamics · Strategy & product insights
+      Field Experiment · Causal Inference · Marketplace Dynamics · Strategy & Product Insights
+      <br><br>
+      These research dashboards showcase selected projects where I served as <strong>project lead and first author</strong>, translating rigorous empirical methods into actionable insights for platform and service markets.
     </div>
   </div>
 
-  <div class="grid">
+  <div class="two-col">
 
     <div class="card" onclick="location.href='ghf.html'">
       <div class="title">Google Hotel Finder Optimization</div>
@@ -158,11 +227,65 @@
       </div>
       <div>
         <span class="tag">Behavior</span>
-        <span class="tag">Data Bias</span>
+        <span class="tag">Systematic Bias</span>
       </div>
     </div>
 
   </div>
+
+  <div class="section">
+  <div class="section-title">Past Class Projects</div>
+
+  <div class="two-col">
+
+    <div class="card" onclick="window.open('projects/2019_MarketExpansion.pdf', '_blank')">
+      <div class="title">2019 Market Expansion (Consulting)</div>
+      <div class="desc">
+        Strategic consulting project analyzing market entry and expansion opportunities.
+      </div>
+      <div>
+        <span class="tag">Strategy</span>
+        <span class="tag">Consulting</span>
+      </div>
+    </div>
+
+    <div class="card" onclick="window.open('projects/2020_TextMining.pdf', '_blank')">
+      <div class="title">2020 Text Mining (Hotel Reviews)</div>
+      <div class="desc">
+        NLP-based analysis of customer sentiment and review patterns in hospitality data.
+      </div>
+      <div>
+        <span class="tag">NLP</span>
+        <span class="tag">Data Mining</span>
+      </div>
+    </div>
+
+    <div class="card" onclick="window.open('projects/2021_SalesForecasting.pdf', '_blank')">
+      <div class="title">2021 Sales Forecasting (Walmart)</div>
+      <div class="desc">
+        Time series modeling and predictive analytics for retail demand forecasting.
+      </div>
+      <div>
+        <span class="tag">Forecasting</span>
+        <span class="tag">Retail</span>
+      </div>
+    </div>
+
+    <div class="card" onclick="window.open('projects/2022_child_tax_credit_food_security.pdf.pdf', '_blank')">
+      <div class="title">2022 Child Tax Credit & Food Security</div>
+      <div class="desc">
+        Empirical analysis of policy impact on household food security during COVID.
+      </div>
+      <div>
+        <span class="tag">Policy</span>
+        <span class="tag">Causal</span>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
 
   <!-- NEW SECTION: SUBSTACK -->
   <div class="section">
@@ -189,7 +312,7 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://francesxwang.substac
   });
 </script>
 
-<div class="card" onclick="window.open('https://ecommons.cornell.edu/entities/publication/1cb6fb56-256e-4d36-b677-0301380ae854', '_blank')">
+<div class="small-card" onclick="window.open('https://ecommons.cornell.edu/entities/publication/1cb6fb56-256e-4d36-b677-0301380ae854', '_blank')">
   <div class="title">PhD Dissertation — Causal Inference in Service Research</div>
   <div class="desc">
     Doctoral dissertation at Cornell University examining causal methods in service and marketplace settings, with applications to hospitality and platform economics.
@@ -203,7 +326,7 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://francesxwang.substac
   </div>
 </div>
 
-<div class="card" onclick="window.open('https://web.archive.org/web/20260504213958/https://sha.cornell.edu/people/xinhua-frances-wang/', '_blank')">
+<div class="small-card" onclick="window.open('https://web.archive.org/web/20260504213958/https://sha.cornell.edu/people/xinhua-frances-wang/', '_blank')">
   <div class="title"> Cornell PhD Profile </div>
   <div class="desc">
     Archived official profile from Cornell University's website.
@@ -217,7 +340,7 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://francesxwang.substac
   </div>
 </div>
 
-<div class="card" onclick="window.open('https://web.archive.org/web/20260504214606/https://news.cornell.edu/stories/2019/10/hackathon-merges-data-savvy-passion-hospitality', '_blank')">
+<div class="small-card" onclick="window.open('https://web.archive.org/web/20260504214606/https://news.cornell.edu/stories/2019/10/hackathon-merges-data-savvy-passion-hospitality', '_blank')">
   <div class="title">Cornell Hospitality Hackathon — First Place Prize</div>
   <div class="desc">
     Awarded First Place Prize in the Cornell Hospitality Hackathon; featured in Cornell Chronicle covering data-driven innovation in hospitality.
